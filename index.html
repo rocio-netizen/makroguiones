@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Makro — Pack de Guiones</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- PANTALLA DE BIENVENIDA -->
+  <div id="screen-home" class="screen active">
+    <div class="home-bg">
+      <div class="noise"></div>
+      <div class="grid-overlay"></div>
+    </div>
+    <nav class="nav">
+      <div class="logo">M<span class="logo-dot">.</span></div>
+      <div class="nav-tag">Herramienta interna · Contenido digital</div>
+    </nav>
+    <div class="home-content">
+      <div class="eyebrow">Pack de guiones</div>
+      <h1 class="home-title">Generá tu<br><em>contenido</em><br>Makro.</h1>
+      <p class="home-sub">Completá tu idea y en segundos tenés el pack completo: objetivos, requerimientos de producción y guion con las 4 instancias.</p>
+      <button class="btn-primary" onclick="goTo('screen-form')">
+        Empezar
+        <span class="btn-arrow">→</span>
+      </button>
+    </div>
+    <div class="home-chips">
+      <span class="chip">Hook</span>
+      <span class="chip chip-arrow">→</span>
+      <span class="chip">Desarrollo</span>
+      <span class="chip chip-arrow">→</span>
+      <span class="chip">Desarrollo 2</span>
+      <span class="chip chip-arrow">→</span>
+      <span class="chip chip-cta">Call to action</span>
+    </div>
+    <div class="home-meta">15 — 30 seg · Tono argentino · Family friendly</div>
+  </div>
+
+  <!-- PANTALLA FORMULARIO -->
+  <div id="screen-form" class="screen">
+    <nav class="nav nav-inner">
+      <button class="btn-back" onclick="goTo('screen-home')">← Volver</button>
+      <div class="logo">M<span class="logo-dot">.</span></div>
+      <div class="nav-step">Paso 1 de 1</div>
+    </nav>
+
+    <div class="form-layout">
+      <div class="form-left">
+        <h2 class="form-title">Contanos tu idea</h2>
+        <p class="form-subtitle">Cuanto más detalle le metas, mejor sale el guion.</p>
+
+        <div class="field">
+          <label>Tu idea para el video <span class="req">*</span></label>
+          <textarea id="idea" rows="5" placeholder="Ej: Mostrar que en Makro encontrás todo para el asado perfecto. Un asador exagerado que lleva TODO a la parrilla y sus amigos no pueden creerlo..."></textarea>
+          <span class="field-hint">Incluí el producto, la situación y si hay personajes o acción.</span>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Categoría / Producto</label>
+            <input type="text" id="categoria" placeholder="Ej: Carnes, Almacenes, Bazar…">
+          </div>
+          <div class="field">
+            <label>Duración objetivo</label>
+            <select id="duracion">
+              <option value="15 segundos">15 segundos</option>
+              <option value="20 segundos" selected>20 segundos</option>
+              <option value="25 segundos">25 segundos</option>
+              <option value="30 segundos">30 segundos</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Tono del video</label>
+            <select id="tono">
+              <option value="divertido y familiar">Divertido y familiar</option>
+              <option value="informativo y dinámico">Informativo y dinámico</option>
+              <option value="aspiracional y cálido">Aspiracional y cálido</option>
+              <option value="urgente y promocional">Urgente y promocional</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Plataforma</label>
+            <select id="plataforma">
+              <option value="Instagram Reels">Instagram Reels</option>
+              <option value="TikTok">TikTok</option>
+              <option value="ambas plataformas">Ambas</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Link de referencia <span class="opt">(opcional)</span></label>
+          <input type="url" id="referencia" placeholder="https://pinterest.com/pin/... o https://tiktok.com/@...">
+          <span class="field-hint">Pinterest, Instagram, TikTok — cualquier post que sea el vibe que buscás.</span>
+        </div>
+
+        <button class="btn-generate" id="genBtn" onclick="generarGuion()">
+          <span id="btnText">Generar pack de guion</span>
+          <span class="btn-icon" id="btnIcon">✦</span>
+        </button>
+
+        <div id="error-msg" class="error-msg hidden">Por favor completá tu idea antes de continuar.</div>
+      </div>
+
+      <div class="form-right">
+        <div class="preview-card">
+          <div class="preview-label">Lo que vas a obtener</div>
+          <div class="preview-items">
+            <div class="preview-item">
+              <div class="preview-num">01</div>
+              <div>
+                <div class="preview-name">Objetivos de comunicación</div>
+                <div class="preview-desc">Qué queremos lograr con el video</div>
+              </div>
+            </div>
+            <div class="preview-item">
+              <div class="preview-num">02</div>
+              <div>
+                <div class="preview-name">Requerimientos de producción</div>
+                <div class="preview-desc">Qué sí o sí necesitamos para filmar</div>
+              </div>
+            </div>
+            <div class="preview-item">
+              <div class="preview-num">03</div>
+              <div>
+                <div class="preview-name">Referencia visual</div>
+                <div class="preview-desc">Estilo y planos a buscar</div>
+              </div>
+            </div>
+            <div class="preview-item">
+              <div class="preview-num">04</div>
+              <div>
+                <div class="preview-name">Guion en 4 instancias</div>
+                <div class="preview-desc">Hook · Desarrollo · Desarrollo 2 · CTA</div>
+              </div>
+            </div>
+          </div>
+          <div class="preview-tags">
+            <span class="ptag ptag-hook">Hook</span>
+            <span class="ptag ptag-dev">Desa. 1</span>
+            <span class="ptag ptag-dev">Desa. 2</span>
+            <span class="ptag ptag-cta">CTA</span>
+          </div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-icon">💡</div>
+          <p>Cuanto más detalle en tu idea, mejor el resultado. Mencioná si querés texto en pantalla, si hay actores, si es cámara en mano, etc.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANTALLA LOADING -->
+  <div id="screen-loading" class="screen">
+    <div class="loading-content">
+      <div class="loading-logo">M<span class="logo-dot">.</span></div>
+      <div class="loading-bar-wrap">
+        <div class="loading-bar" id="loadingBar"></div>
+      </div>
+      <div class="loading-msg" id="loadingMsg">Analizando tu idea…</div>
+    </div>
+  </div>
+
+  <!-- PANTALLA RESULTADO -->
+  <div id="screen-result" class="screen">
+    <nav class="nav nav-inner">
+      <button class="btn-back" onclick="goTo('screen-form')">← Nueva idea</button>
+      <div class="logo">M<span class="logo-dot">.</span></div>
+      <button class="btn-export" onclick="exportarPDF()">Exportar ↓</button>
+    </nav>
+
+    <div id="result-container" class="result-layout">
+      <!-- Generado dinámicamente -->
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
